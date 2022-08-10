@@ -26,6 +26,7 @@ jobs:
     - name: Test
       working-directory: ./Booking.Server
       run: dotnet test --no-build --verbosity normal
+    - name: upload artifacts
     - uses: actions/upload-artifact@v3
       with:
         name: my-artifact
