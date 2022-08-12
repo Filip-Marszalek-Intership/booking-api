@@ -33,6 +33,7 @@ jobs:
           Booking.Server/Booking.Server.API/obj
           Booking.Server/Booking.Server.DB/bin
           Booking.Server/Booking.Server.DB/obj
+          Dockerfile
   
   docker:
     needs: build
