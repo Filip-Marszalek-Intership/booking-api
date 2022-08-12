@@ -22,15 +22,15 @@ steps:
     version: '3.0.x'
     packageType: runtime
 
-- script: restore
+- script: dotnet restore
   workingDirectory: ./Booking.Server
   displayName: restore
 
-- script: 'publish --no-restore --output artifacts'
+- script: 'dotnet publish --no-restore --output artifacts'
   workingDirectory: ./Booking.Server
   displayName: 'dotnet build --no-restore --output artifacts'
 
-- script: 'test --no-restore --no-build'
+- script: 'dotnet test --no-restore --no-build'
   workingDirectory: ./Booking.Server
   displayName: 'dotnet build --no-restore --output artifacts'
 
