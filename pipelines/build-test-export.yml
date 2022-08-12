@@ -22,12 +22,32 @@ steps:
     version: '3.0.x'
     packageType: runtime
 
-- script: |
-    dotnet restore
-    dotnet publish --no-restore --output artifacts
-    dotnet test --no-restore --no-build
-  workingDirectory: ./Booking.Server
-  displayName: 'dotnet restore, build and test'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    workingDirectory: ./Booking.Server
+displayName: restore
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    arguments: '--no-restore --output artifacts'
+    workingDirectory: ./Booking.Server
+  displayName: 'dotnet build --no-restore --output artifacts'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    arguments: '--no-restore --no-build'
+    workingDirectory: ./Booking.Server
+  displayName: 'dotnet build --no-restore --output artifacts'
+
+#- script: |
+#    dotnet restore
+#    dotnet publish --no-restore --output artifacts
+#    dotnet test --no-restore --no-build
+#  workingDirectory: ./Booking.Server
+#  displayName: 'dotnet restore, build and test'
 
 - script: ls -R
 
