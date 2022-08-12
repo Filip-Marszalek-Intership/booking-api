@@ -25,11 +25,11 @@ steps:
 
 - script: |
     dotnet restore
-    dotnet publish --no-restore --output ./artifacts
+    dotnet publish --no-restore --output artifacts
     dotnet test --no-restore --no-build
   workingDirectory: ./Booking.Server
   displayName: 'dotnet restore, build and test'
 
 - script: ls -R
 
-- publish: ./Booking.Server/artifa
+- publish: ./Booking.Server/artifacts
