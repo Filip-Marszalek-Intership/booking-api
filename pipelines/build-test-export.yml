@@ -5,13 +5,11 @@ jobs:
 
 - building
 
-
-  variables:
-    buildConfiguration: 'Release'
-
   steps:
   pool:
     vmImage: ubuntu-latest
+  variables:
+    buildConfiguration: 'Release'
   - task: UseDotNet@2
     inputs:
       version: '6.0.x'
