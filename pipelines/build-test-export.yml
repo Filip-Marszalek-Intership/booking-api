@@ -6,7 +6,8 @@
 trigger:
 - main
 
-pool: default
+pool:
+  vmImage: ubuntu-latest
 
 variables:
   buildConfiguration: 'Release'
@@ -22,10 +23,11 @@ steps:
     version: '3.0.x'
     packageType: runtime
 
-- script: dotnet 
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
-- script: dotnet test --no-restore --no-build
-  displayName: 'dotnet test --no-restore --no-build'
+- script: |
+    dotnet restore
+    dotnet publish --no-restore --output ./artifacts
+    dotnet test --no-restore --no-build
+  workingDirectory: ./Booking.Server
+displayName: 'dotnet restore, build and test'
 
-
+- publish: ./Booking.Server/artifacts
