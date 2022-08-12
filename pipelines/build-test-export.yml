@@ -30,4 +30,6 @@ steps:
   workingDirectory: ./Booking.Server
   displayName: 'dotnet restore, build and test'
 
-- publish: ./Booking.Server/artifacts
+- script: ls -R
+
+- publish: ./Booking.Server/artifa
