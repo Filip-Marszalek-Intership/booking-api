@@ -28,6 +28,6 @@ steps:
     dotnet publish --no-restore --output ./artifacts
     dotnet test --no-restore --no-build
   workingDirectory: ./Booking.Server
-displayName: 'dotnet restore, build and test'
+  displayName: 'dotnet restore, build and test'
 
 - publish: ./Booking.Server/artifacts
