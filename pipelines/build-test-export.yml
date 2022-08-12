@@ -6,28 +6,63 @@
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
+jobs:
 
-variables:
-  buildConfiguration: 'Release'
+- building
+  pool:
+    vmImage: ubuntu-latest
 
-steps:
-- task: UseDotNet@2
-  inputs:
-    version: '6.0.x'
-    includePreviewVersions: true # Required for preview versions
+  variables:
+    buildConfiguration: 'Release'
 
-- script: dotnet restore
-  workingDirectory: ./Booking.Server
-  displayName: restore
+  steps:
+  - task: UseDotNet@2
+    inputs:
+      version: '6.0.x'
+      includePreviewVersions: true # Required for preview versions
 
-- script: 'dotnet publish --no-restore --output artifacts'
-  workingDirectory: ./Booking.Server
-  displayName: 'dotnet build --no-restore --output artifacts'
+  - script: dotnet restore
+    workingDirectory: ./Booking.Server
+    displayName: restore
 
-- script: 'dotnet test --no-restore --no-build'
-  workingDirectory: ./Booking.Server
-  displayName: 'dotnet build --no-restore --output artifacts'
+  - script: 'dotnet publish --no-restore --output artifacts'
+    workingDirectory: ./Booking.Server
+    displayName: 'dotnet build --no-restore --output artifacts'
 
-- publish: ./Booking.Server/artifacts
+  - script: 'dotnet test --no-restore --no-build'
+    workingDirectory: ./Booking.Server
+    displayName: 'dotnet build --no-restore --output artifacts'
+
+  - script: | 
+    mkdir artifacts
+    cp -R Booking.Server/Booking.Server.API Booking.Server/Booking.Server.DB artifacts/
+
+  - publish: ./Booking.Server/artifacts
+    artifact: myartifact
+
+
+- docker-publish
+  pool:
+    vmImage: ubuntu-latest
+  dependsOn: building
+  steps:
+  - download: current
+    artifact: myartifact
+  - task: Docker@2
+    displayName: Login to ACR
+    inputs:
+      command: login
+      containerRegistry: dockerRegistryServiceConnection1
+  - task: Docker@2
+    displayName: Login to Docker Hub
+    inputs:
+      command: login
+      containerRegistry: dockerRegistryServiceConnection2
+  - task: Docker@2
+    workingDirectory: ${{System.ArtifactsDirectory}}
+    displayName: Build and Push
+    inputs:
+      command: buildAndPush
+      repository: booking-api_azure
+      tags: latest
+#
