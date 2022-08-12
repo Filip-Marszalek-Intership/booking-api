@@ -4,13 +4,14 @@ trigger:
 jobs:
 
 - building
-  pool:
-    vmImage: ubuntu-latest
+
 
   variables:
     buildConfiguration: 'Release'
 
   steps:
+  pool:
+    vmImage: ubuntu-latest
   - task: UseDotNet@2
     inputs:
       version: '6.0.x'
@@ -37,10 +38,11 @@ jobs:
 
 
 - docker-publish
-  pool:
-    vmImage: ubuntu-latest
+
   dependsOn: building
   steps:
+  pool:
+    vmImage: ubuntu-latest
   - download: current
     artifact: myartifact
   - task: Docker@2
