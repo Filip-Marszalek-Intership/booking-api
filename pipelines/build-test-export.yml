@@ -58,3 +58,4 @@ steps:
       command: buildAndPush
       repository: booking-api_azure
       tags: latest
+# tactical comment pipeline didn't run
