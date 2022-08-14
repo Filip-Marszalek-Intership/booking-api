@@ -3,7 +3,7 @@ trigger:
 
 jobs:
 
--job: building
+- job: building
 pool:
   vmImage: ubuntu-latest
 variables:
@@ -33,7 +33,7 @@ steps:
   - publish: ./Booking.Server/artifacts
     artifact: myartifact
 
--job: docker-publish
+- job: docker-publish
 
 dependsOn: building
 pool:
