@@ -36,10 +36,10 @@ steps:
 
 - docker-publish
 
-  dependsOn: building
-  steps:
-  pool:
-    vmImage: ubuntu-latest
+dependsOn: building
+pool:
+  vmImage: ubuntu-latest
+steps:
   - download: current
     artifact: myartifact
   - task: Docker@2
