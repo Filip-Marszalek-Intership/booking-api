@@ -1,12 +1,11 @@
-# just a comment
 trigger:
 - main
 
 jobs:
 
 - building
-  pool:
-    vmImage: ubuntu-latest
+pool:
+  vmImage: ubuntu-latest
   variables:
     buildConfiguration: 'Release'
 #  steps:
