@@ -27,8 +27,8 @@ steps:
     displayName: 'dotnet build --no-restore --output artifacts'
 
   - script: | 
-    mkdir artifacts
-    cp -R Booking.Server/Booking.Server.API Booking.Server/Booking.Server.DB artifacts/
+    'mkdir artifacts'
+    'cp -R Booking.Server/Booking.Server.API Booking.Server/Booking.Server.DB artifacts/''
 
   - publish: ./Booking.Server/artifacts
     artifact: myartifact
