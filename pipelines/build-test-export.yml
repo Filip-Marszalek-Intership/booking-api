@@ -4,7 +4,6 @@ trigger:
 jobs:
 
 - building
-
   steps:
   pool:
     vmImage: ubuntu-latest
