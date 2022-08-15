@@ -54,6 +54,5 @@ jobs:
     displayName: Build and Push
     inputs:
       command: buildAndPush
-      repository: booking-api_azure
+      repository: booking_api_azure
       tags: latest
-# tactical comment pipeline didn't run
