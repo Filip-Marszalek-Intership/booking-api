@@ -33,7 +33,7 @@ jobs:
   - publish: ./Booking.Server/artifacts
     artifact: myartifact
 
-- job: docker-publish
+- job: docker_publish
   dependsOn: building
   pool:
     vmImage: ubuntu-latest
@@ -54,5 +54,5 @@ jobs:
     displayName: Build and Push
     inputs:
       command: buildAndPush
-      repository: booking_api_azure
+      repository: booking-api_azure
       tags: latest
