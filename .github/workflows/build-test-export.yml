@@ -29,10 +29,7 @@ jobs:
       with:
         name: my-artifact
         path: |
-          Booking.Server/Booking.Server.API/bin
-          Booking.Server/Booking.Server.API/obj
-          Booking.Server/Booking.Server.DB/bin
-          Booking.Server/Booking.Server.DB/obj
+          ./Booking.Server/artifacts/
           Dockerfile
   
   docker:
