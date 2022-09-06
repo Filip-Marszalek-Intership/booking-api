@@ -43,7 +43,7 @@ jobs:
   - task: DownloadPipelineArtifact@2
     inputs:
       artifact: myartifact
-      path: $(Pipeline.Workspace)
+      path: /home/vsts/work/1/s/
   - script: |
       pwd
       echo ''
