@@ -18,7 +18,7 @@ jobs:
     workingDirectory: ./Booking.Server
     displayName: restore
 
-  - script: 'dotnet publish --no-restore --output $(Build.ArtifactStagingDirectory)/api'
+  - script: 'dotnet publish --no-restore --output $(Build.ArtifactStagingDirectory)'
     workingDirectory: ./Booking.Server
     displayName: 'dotnet publish --no-restore --output $(Build.ArtifactStagingDirectory)'
 
