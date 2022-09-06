@@ -18,19 +18,20 @@ jobs:
     workingDirectory: ./Booking.Server
     displayName: restore
 
-  - script: 'dotnet publish --no-restore --output artifacts'
+  - script: 'dotnet publish --no-restore --output $(Build.ArtifactStagingDirectory)/api'
     workingDirectory: ./Booking.Server
-    displayName: 'dotnet build --no-restore --output artifacts'
+    displayName: 'dotnet publish --no-restore --output $(Build.ArtifactStagingDirectory)'
 
   - script: 'dotnet test --no-restore --no-build'
     workingDirectory: ./Booking.Server
-    displayName: 'dotnet build --no-restore --output artifacts'
+    displayName: 'dotnet test --no-restore --no-build'
 
-  - script: | 
-      mkdir artifacts
-      cp -R Booking.Server/Booking.Server.API Booking.Server/Booking.Server.DB artifacts
+  - script: 'cp Dockerfile $(Build.ArtifactStagingDirectory)'
+  #- script: | 
+  #    mkdir artifacts
+  #    cp -R Booking.Server/Booking.Server.API Booking.Server/Booking.Server.DB artifacts
 
-  - publish: ./Booking.Server/artifacts
+  - publish: $(Build.ArtifactStagingDirectory)
     artifact: myartifact
 
 - job: docker_publish
