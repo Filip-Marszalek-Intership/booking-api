@@ -39,8 +39,11 @@ jobs:
   pool:
     vmImage: ubuntu-latest
   steps:
-  - download: current
-    artifact: myartifact
+  - checkout: none
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      artifact: myartifact
+      path: $(Pipeline.Workspace)
   - task: Docker@2
     displayName: Login to Docker Hub
     inputs:
