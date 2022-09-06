@@ -40,9 +40,9 @@ jobs:
     vmImage: ubuntu-latest
   steps:
   - task: DownloadPipelineArtifact@2
-  inputs:
-    artifact: myartifact
-    path: /
+    inputs:
+      artifact: myartifact
+      path: /
   #- download: current
   #  artifact: myartifact
   #  path: /
