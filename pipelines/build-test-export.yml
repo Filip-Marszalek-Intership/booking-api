@@ -44,7 +44,7 @@ jobs:
     inputs:
       artifact: myartifact
       path: $(Pipeline.Workspace)
-  - scritp: |
+  - script: |
       pwd
       echo ''
       ls -R
